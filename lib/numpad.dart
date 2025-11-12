@@ -1,228 +1,52 @@
 import 'package:flutter/material.dart';
 
 class Numpad extends StatelessWidget {
-  const Numpad({super.key});
+  final Function(String) onButtonTap;
+
+  const Numpad({super.key, required this.onButtonTap});
+
+  Widget buildButton(String text, {Color color = Colors.black}) {
+    return Expanded(
+      child: TextButton(
+        onPressed: () => onButtonTap(text),
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 28, color: color),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Row(
           children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "AC",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.backspace_outlined),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "%",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "÷",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
+            buildButton("AC", color: Colors.orange),
+            buildButton("⌫", color: Colors.orange),
+            buildButton("%", color: Colors.orange),
+            buildButton("÷", color: Colors.orange),
           ],
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "7",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "8",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "9",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "×",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-          ],
+          children: [buildButton("7"), buildButton("8"), buildButton("9"), buildButton("×", color: Colors.orange)],
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "4",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "5",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "6",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "-",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-          ],
+          children: [buildButton("4"), buildButton("5"), buildButton("6"), buildButton("-", color: Colors.orange)],
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "1",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "2",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "3",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "+",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-          ],
+          children: [buildButton("1"), buildButton("2"), buildButton("3"), buildButton("+", color: Colors.orange)],
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "00",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "0",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  ".",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "=",
-                  style: TextStyle(fontSize: 28, color: Colors.black),
-                ),
-              ),
-            ),
-          ],
+          children: [buildButton("00"), buildButton("0"), buildButton("."), buildButton("=", color: Colors.orange)],
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
       ],
     );
   }
