@@ -12,27 +12,46 @@ class CalculatorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
-      width: double.infinity, // Makes it take full width
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        horizontal: screenWidth * 0.05,
+        vertical: 20,
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end, // Right-align content
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(
-            expression.isEmpty ? '0' : expression,
-            style: const TextStyle(fontSize: 36, color: Colors.black54),
-            textAlign: TextAlign.right, // Ensures text itself aligns right
-          ),
-          const SizedBox(height: 8),
-          Text(
-            result.isEmpty ? '' : result,
-            style: const TextStyle(
-              fontSize: 48,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          // Expression display
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            reverse: true,
+            child: Text(
+              expression.isEmpty ? '0' : expression,
+              style: TextStyle(
+                fontSize: screenWidth * 0.07, // Responsive font size
+                color: const Color.fromARGB(255, 28, 28, 28),
+                fontWeight: FontWeight.w400,
+              ),
+              textAlign: TextAlign.right,
             ),
-            textAlign: TextAlign.right,
+          ),
+          const SizedBox(height: 16),
+          // Result display
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            reverse: true,
+            child: Text(
+              result.isEmpty ? '' : result,
+              style: TextStyle(
+                fontSize: screenWidth * 0.09, // Responsive font size
+                fontWeight: FontWeight.bold,
+                color: Colors.orange[700],
+              ),
+              textAlign: TextAlign.right,
+            ),
           ),
           const SizedBox(height: 24),
         ],

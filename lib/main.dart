@@ -59,11 +59,11 @@ class _CalculatorState extends State<Calculator> {
 
   bool _canAddDecimalPoint() {
     if (expression.isEmpty) return true;
-
+    
     // Find the last number in the expression
     final parts = expression.split(RegExp(r'[+\-×÷]'));
     final lastNumber = parts.last;
-
+    
     // Check if the last number already has a decimal point
     return !lastNumber.contains('.');
   }
@@ -91,7 +91,7 @@ class _CalculatorState extends State<Calculator> {
       Expression expParsed = p.parse(exp);
       ContextModel cm = ContextModel();
       double eval = expParsed.evaluate(EvaluationType.REAL, cm);
-
+      
       // Format the result to avoid unnecessary decimal places
       if (eval % 1 == 0) {
         result = eval.toInt().toString();
@@ -107,20 +107,45 @@ class _CalculatorState extends State<Calculator> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+        useMaterial3: true,
+      ),
       home: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           centerTitle: true,
+          backgroundColor: Colors.orange,
+          foregroundColor: Colors.white,
+          elevation: 0,
           title: const Text(
             "Calculator",
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
         ),
         body: Column(
           children: [
-            const Spacer(),
-            CalculatorScreen(expression: expression, result: result),
-            const Divider(color: Colors.orange, thickness: 2),
-            Numpad(onButtonTap: onButtonTap),
+            // Calculator Screen with white background
+            Expanded(
+              flex: 2,
+              child: Container(
+                color: Colors.white,
+                child: CalculatorScreen(expression: expression, result: result),
+              ),
+            ),
+            // Orange divider
+            Container(
+              height: 2,
+              color: Colors.orange[200],
+            ),
+            // Numpad with light orange background
+            Expanded(
+              flex: 3,
+              child: Container(
+                color: Colors.orange[50],
+                child: Numpad(onButtonTap: onButtonTap),
+              ),
+            ),
           ],
         ),
       ),
